@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 
 require 'sinatra'
+require 'data_mapper'
+require_relative 'album'
 
 NUMBER_OF_ALBUMS = 100
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/albums.sqlite3.db")
 
 set :port, 8080
 
@@ -12,6 +15,7 @@ end
 
 post "/list" do
   @sort_order = params[:order]
-  @albums = []
+  @rank_to_highlight = params[:rank].to_i
+  @albums = Album.all
   erb :list
 end
