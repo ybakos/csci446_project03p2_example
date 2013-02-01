@@ -2,8 +2,12 @@
 
 require 'sinatra'
 
+NUMBER_OF_ALBUMS = 100
+
+
 set :port, 8080
 
-get "/" do
-  "Hello!"
+get "/form" do
+  erb :form
 end
+
