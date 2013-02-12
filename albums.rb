@@ -16,6 +16,6 @@ end
 post "/list" do
   @sort_order = params[:order]
   @rank_to_highlight = params[:rank].to_i
-  @albums = Album.all
+  @albums = Album.all(:order => @sort_order.intern.asc)
   erb :list
 end
